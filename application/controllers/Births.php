@@ -29,10 +29,31 @@ class Births extends CI_Controller
             $qry = $this->db->insert('tbl_births', $data);
             if ($qry) {
                 $this->session->set_flashdata('message', '<div class="alert alert-success"><strong>Record successfully saved.</strong><button type="button" class="close" data-dismiss="alert">&times;</button></div>');
-                redirect('ward');
+                redirect('births');
             } else {
                 $this->session->set_flashdata('message', '<div class="alert alert-danger"><strong>SORRY!! An error occurred while posting data. Please try again later.</strong><button type="button" class="close" data-dismiss="alert">&times;</button></div>');
-                redirect('ward');
+                redirect('births/add');
+            }
+        }
+    }
+    public function update()
+    {
+        if (isset($_POST['submit_btn'])) {
+            $data = array(
+                'hospital_id' => $this->input->post('hospital_id'),
+                'surname' => $this->input->post('surname'),
+                'other_names' => $this->input->post('other_names'),
+                'dob' => $this->input->post('dob'),
+                'place_of_birth' => $this->input->post('place_of_birth'),
+                'parent_name' => $this->input->post('parent_name'),
+            );
+            $qry = $this->db->where('id', $this->input->post('id'))->update('tbl_births', $data);
+            if ($qry) {
+                $this->session->set_flashdata('message', '<div class="alert alert-success"><strong>Data successfully updated.</strong><button type="button" class="close" data-dismiss="alert">&times;</button></div>');
+                redirect('births');
+            } else {
+                $this->session->set_flashdata('message', '<div class="alert alert-danger"><strong>SORRY!! An error occurred while posting data. Please try again later.</strong><button type="button" class="close" data-dismiss="alert">&times;</button></div>');
+                redirect('births');
             }
         }
     }

@@ -117,7 +117,7 @@
                                                                                 $getsubcounty = $this->db->get('tbl_subcounty')->result();
                                                                                 foreach ($getsubcounty as $c) {
                                                                                 ?>
-                                                                                    <option value="<?php echo $c->id; ?>" <?php if ($w->id == $c->id) echo 'selected="selected"'; ?>><?php echo $c->subcounty_name; ?></option>
+                                                                                    <option value="<?php echo $c->id; ?>" <?php if ($w->subcounty_id == $c->id) echo 'selected="selected"'; ?>><?php echo $c->subcounty_name; ?></option>
                                                                                 <?php
                                                                                 }
                                                                                 ?>

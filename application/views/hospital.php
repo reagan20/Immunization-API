@@ -108,8 +108,8 @@
                                                 <tr>
                                                     <td><?php echo ++$count; ?>.</td>
                                                     <td><?php echo $w->hospital_name; ?></td>
-                                                    <td><?php echo $w->ward_name; ?></td>
                                                     <td><?php echo $w->subcounty_name; ?></td>
+                                                    <td><?php echo $w->ward_name; ?></td>
                                                     <td><?php echo $w->level; ?></td>
                                                     <td style="text-align:right">
                                                         <div class="btn-group" role="group" aria-label="Basic example">
