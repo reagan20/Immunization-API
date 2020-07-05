@@ -64,7 +64,7 @@
                                             <tr>
                                                 <th>S/N</th>
                                                 <th>Sub-county Name</th>
-                                                <th>Action</>
+                                                <th style="text-align:right">Action</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -76,8 +76,43 @@
                                                 <tr>
                                                     <td><?php echo ++$count; ?>.</td>
                                                     <td><?php echo $w->subcounty_name; ?></td>
-                                                    <td></td>
+                                                    <td style="text-align:right">
+                                                        <div class="btn-group" role="group" aria-label="Basic example">
+                                                            <button data-toggle="modal" data-target="#view_subcounty<?php echo $w->id; ?>" type="button" class="btn btn-xs btn-info"><i class="fa fa-eye"></i></button>
+                                                            <button data-toggle="modal" data-target="#view_subcounty<?php echo $w->id; ?>" type="button" class="btn btn-xs btn-success"><i class="fa fa-edit"></i></button>
+                                                            <button type="button" class="btn btn-xs btn-danger"><i class="fa fa-trash"></i></button>
+                                                        </div>
+                                                    </td>
                                                 </tr>
+                                                <div class="modal fade" id="view_subcounty<?php echo $w->id; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabelform" aria-hidden="true">
+                                                    <div class="modal-dialog" role="document">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title" id="exampleModalLabel"><i class="fa fa-plus-square"></i> View/Update Sub-county</h5>
+                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                    <span aria-hidden="true">&times;</span>
+                                                                </button>
+                                                            </div>
+                                                            <form method="post" action="<?php echo site_url('subcounty/update'); ?>">
+                                                                <div class="modal-body">
+                                                                    <div class="row">
+
+                                                                        <div class="col-md-12">
+                                                                            <label>Sub-county Name: <label class="text-danger">*</label></label>
+                                                                            <input hidden value="<?php echo $w->id; ?>" name="id">
+                                                                            <input value="<?php echo $w->subcounty_name; ?>" class="form-control" placeholder="Sub-county Name" name="subcounty_name" id="subcounty_name">
+                                                                        </div>
+
+                                                                    </div>
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                                    <button type="submit" name="submit_btn" id="submit_btn" class="btn btn-success"><i class="fa fa-save"></i> Save Changes</button>
+                                                                </div>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             <?php
                                             }
                                             ?>

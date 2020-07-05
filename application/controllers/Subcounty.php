@@ -25,6 +25,22 @@ class Subcounty extends CI_Controller
             }
         }
     }
+    public function update()
+    {
+        if (isset($_POST['submit_btn'])) {
+            $data = array(
+                'subcounty_name' => $this->input->post('subcounty_name'),
+            );
+            $qry = $this->db->where('id', $this->input->post('id'))->update('tbl_subcounty', $data);
+            if ($qry) {
+                $this->session->set_flashdata('message', '<div class="alert alert-success"><strong>Data successfully updated.</strong><button type="button" class="close" data-dismiss="alert">&times;</button></div>');
+                redirect('subcounty');
+            } else {
+                $this->session->set_flashdata('message', '<div class="alert alert-danger"><strong>SORRY!! An error occurred while posting data. Please try again later.</strong><button type="button" class="close" data-dismiss="alert">&times;</button></div>');
+                redirect('subcounty');
+            }
+        }
+    }
     /* public function add()
     {
         $this->load->view('header');

@@ -27,4 +27,22 @@ class Vaccines extends CI_Controller
             }
         }
     }
+    public function update()
+    {
+        if (isset($_POST['submit_btn'])) {
+            $data = array(
+                'vaccine_name' => $this->input->post('vaccine_name'),
+                'period' => $this->input->post('period'),
+                'description' => $this->input->post('description')
+            );
+            $qry = $this->db->where('id', $this->input->post('id'))->update('tbl_vaccines', $data);
+            if ($qry) {
+                $this->session->set_flashdata('message', '<div class="alert alert-success"><strong>Data successfully updated.</strong><button type="button" class="close" data-dismiss="alert">&times;</button></div>');
+                redirect('vaccines');
+            } else {
+                $this->session->set_flashdata('message', '<div class="alert alert-danger"><strong>SORRY!! An error occurred while posting data. Please try again later.</strong><button type="button" class="close" data-dismiss="alert">&times;</button></div>');
+                redirect('vaccines');
+            }
+        }
+    }
 }

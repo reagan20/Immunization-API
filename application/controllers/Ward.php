@@ -27,6 +27,23 @@ class Ward extends CI_Controller
             }
         }
     }
+    public function update()
+    {
+        if (isset($_POST['submit_btn'])) {
+            $data = array(
+                'subcounty_id' => $this->input->post('subcounty_id'),
+                'ward_name' => $this->input->post('ward_name')
+            );
+            $qry = $this->db->where('id', $this->input->post('id'))->update('tbl_ward', $data);
+            if ($qry) {
+                $this->session->set_flashdata('message', '<div class="alert alert-success"><strong>Data successfully updated.</strong><button type="button" class="close" data-dismiss="alert">&times;</button></div>');
+                redirect('ward');
+            } else {
+                $this->session->set_flashdata('message', '<div class="alert alert-danger"><strong>SORRY!! An error occurred while posting data. Please try again later.</strong><button type="button" class="close" data-dismiss="alert">&times;</button></div>');
+                redirect('ward');
+            }
+        }
+    }
     /* public function add()
     {
         $this->load->view('header');

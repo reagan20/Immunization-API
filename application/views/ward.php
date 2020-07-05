@@ -75,7 +75,7 @@
                                                 <th>S/N</th>
                                                 <th>Ward Name</th>
                                                 <th>Sub-county Name</th>
-                                                <th>Action</>
+                                                <th style="text-align:right">Action</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -88,8 +88,56 @@
                                                     <td><?php echo ++$count; ?>.</td>
                                                     <td><?php echo $w->ward_name; ?></td>
                                                     <td><?php echo $w->subcounty_name; ?></td>
-                                                    <td></td>
+                                                    <td style="text-align:right">
+                                                        <div class="btn-group" role="group" aria-label="Basic example">
+                                                            <button data-toggle="modal" data-target="#view_ward<?php echo $w->id; ?>" type="button" class="btn btn-xs btn-info"><i class="fa fa-eye"></i></button>
+                                                            <button data-toggle="modal" data-target="#view_ward<?php echo $w->id; ?>" type="button" class="btn btn-xs btn-success"><i class="fa fa-edit"></i></button>
+                                                            <button type="button" class="btn btn-xs btn-danger"><i class="fa fa-trash"></i></button>
+                                                        </div>
+                                                    </td>
                                                 </tr>
+                                                <div class="modal fade" id="view_ward<?php echo $w->id; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabelform" aria-hidden="true">
+                                                    <div class="modal-dialog" role="document">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title" id="exampleModalLabel"><i class="fa fa-plus-square"></i> View/Update Ward</h5>
+                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                    <span aria-hidden="true">&times;</span>
+                                                                </button>
+                                                            </div>
+                                                            <form method="post" action="<?php echo site_url('ward/update'); ?>">
+                                                                <div class="modal-body">
+                                                                    <div class="row">
+                                                                        <div class="col-md-12">
+                                                                            <label>Sub-county: <label class="text-danger">*</label></label>
+                                                                            <input hidden name="id" value="<?php echo $w->id; ?>">
+                                                                            <select class="form-control" name="subcounty_id" id="subcounty_id" required>
+                                                                                <option value="">~~Select Sub-county~~</option>
+                                                                                <?php
+                                                                                $getsubcounty = $this->db->get('tbl_subcounty')->result();
+                                                                                foreach ($getsubcounty as $c) {
+                                                                                ?>
+                                                                                    <option value="<?php echo $c->id; ?>" <?php if ($w->id == $c->id) echo 'selected="selected"'; ?>><?php echo $c->subcounty_name; ?></option>
+                                                                                <?php
+                                                                                }
+                                                                                ?>
+
+                                                                            </select>
+                                                                        </div>
+                                                                        <div class="col-md-12">
+                                                                            <label>Ward Name: <label class="text-danger">*</label></label>
+                                                                            <input value="<?php echo $w->ward_name; ?>" class="form-control" placeholder="Ward Name" name="ward_name" id="ward_name" required>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                                    <button type="submit" name="submit_btn" id="submit_btn" class="btn btn-success"><i class="fa fa-save"></i> Save Changes</button>
+                                                                </div>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             <?php
                                             }
                                             ?>
