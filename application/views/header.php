@@ -44,7 +44,7 @@
                         <h3 class="navigation-title">Navigation</h3>
                     </li> -->
                     <li class="active">
-                        <a href="index.html"><i class="mdi mdi-gauge"></i> <span>Dashboard</span></a>
+                        <a href="<?php echo site_url('dashboard'); ?>"><i class="mdi mdi-gauge"></i> <span>Dashboard</span></a>
                     </li>
                     <li><a href="<?php echo site_url('hospital'); ?>"><i class="fa fa-home"></i> Hospital</a></li>
                     <li><a href="<?php echo site_url('subcounty'); ?>"><i class="fa fa-list"></i> Sub County</a></li>
@@ -100,7 +100,7 @@
             <div class="header-section">
                 <!--logo and logo icon start-->
                 <div class="logo">
-                    <a href="index.html">
+                    <a href="<?php echo site_url('dashboard'); ?>">
                         <span class="logo-img">
                             <img src="assets/images/logo_sm.png" alt="" height="26">
                         </span>
@@ -276,7 +276,7 @@
                                     <a class="dropdown-item" href="#"><i class="mdi mdi-account-circle m-r-5 text-muted"></i> Profile</a>
                                     <a class="dropdown-item" href="#"><span class="badge badge-success pull-right">5</span><i class="mdi mdi-settings m-r-5 text-muted"></i> Settings</a>
                                     <a class="dropdown-item" href="#"><i class="mdi mdi-lock-open-outline m-r-5 text-muted"></i> Lock screen</a>
-                                    <a class="dropdown-item" href="<?php echo site_url('auth');?>"><i class="mdi mdi-logout m-r-5 text-muted"></i> Logout</a>
+                                    <a class="dropdown-item" href="<?php echo site_url('auth'); ?>"><i class="mdi mdi-logout m-r-5 text-muted"></i> Logout</a>
                                 </div>
                             </li>
 
